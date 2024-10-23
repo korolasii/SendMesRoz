@@ -1,0 +1,1 @@
+This is an application for sending requests for response about products in the outlet
