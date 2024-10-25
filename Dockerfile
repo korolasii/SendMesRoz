@@ -1,6 +1,6 @@
 FROM python:3.9
 
-WORKDIR /docker/app/get_answer_rozetka
+WORKDIR /docker/get_answer_rozetka
 
 COPY . .
 
