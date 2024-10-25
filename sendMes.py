@@ -1,8 +1,9 @@
 import requests
 import json
+import asyncio
 from pprint import pprint as pp
 
-def openJson(nameJson = 'seller.json'):
+def openJson(nameJson):
     
     with open(nameJson, 'r', encoding='utf-8') as file:
         
@@ -61,9 +62,21 @@ def sendMess(url, headers, data):
 def answerCreated(returnMes, answerMes, answerTick, order_id):
     
     returnMes.append({f'{order_id}': [answerMes['success'], answerTick['success']]})
+    
+def format_return_mes(return_mes):
+    formatted_str = ""
+    for item in return_mes:
+        for key, value in item.items():
+            formatted_str += f"{key}: {value},\n"
+    return formatted_str
 
-async def startBot():
-    data = openJson('seller.json')
+async def startBot(nameSeller):
+    seller = {
+        'Party Zoo': 'seller_RockDog.json',
+        'Rock Dog': 'seller_RockDog.json'
+    }
+    
+    data = openJson(seller[nameSeller])
 
     responseDataLogin = loginRequest('https://api-seller.rozetka.com.ua/sites', data)
 
@@ -122,14 +135,15 @@ async def startBot():
         answerMes = sendMess('https://api-seller.rozetka.com.ua/messages/create', dataForChangeReviewRequestSendMes, paramsChangeReviewRequestSendMes)
         answerTick = changeStatusReviewRequestSend('https://api-seller.rozetka.com.ua/orders/review-request-status', dataForChangeReviewRequestSend, bodyChangeReviewRequestSend)
         
-        
-        answerCreated(returnMes, answerMes, answerTick, id)
+        answerCreated(returnMes,answerMes , answerTick, id)
         
     if returnMes == []:
         returnMes = 'Все уже отправлено'
-    return returnMes
-
+        return returnMes
+        
+    return format_return_mes(returnMes)
 
 
 if __name__ == "__main__":
-    pp(startBot())
+    result = asyncio.run(startBot('Rock Dog'))
+    print(result)
