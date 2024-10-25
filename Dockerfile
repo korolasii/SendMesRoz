@@ -1,9 +1,9 @@
 FROM python:3.9
 
-WORKDIR /docker/get_answer_rozetka
+WORKDIR /app
 
-COPY . .
+COPY . /app
 
 RUN pip install --no-cache-dir -r req.txt
 
-CMD ["python", "-u", "main.py"]
+CMD ["python", "main.py"]
