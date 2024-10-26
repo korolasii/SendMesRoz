@@ -25,11 +25,11 @@ dp = Dispatcher()
 
 @dp.message(Command('start'))
 async def send_welcome(message: types.Message):
-    await message.answer("Выберите опцию:", reply_markup=start_keyBoard())
+    await message.answer("Виберіть опцію:", reply_markup=start_keyBoard())
 
 @dp.message(Command("help"))
 async def send_help(message: types.Message):
-    await message.reply("Доступные команды:\n/start - Приветствие\n/help - Список команд\n/send - отправка запросов")
+    await message.reply("Доступні команди:\n/start - Привітання\n/help - Список команд\n/send - надсилання запитів")
 
 @dp.message(lambda message: message.text in ["Rock Dog", "Party Zoo"])
 async def handle_button_click(message: types.Message):

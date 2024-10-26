@@ -91,7 +91,7 @@ async def startBot(nameSeller):
     paramsRequestHeaderListOrder = {
         'type': 2,
         'is_review_request_send': 0,
-        'has_market_review': 0
+        # 'has_market_review': 0
     }
 
     responseDataListOrder =  requestListOrders('https://api-seller.rozetka.com.ua/orders/search', requestHeaderListOrder, paramsRequestHeaderListOrder)
@@ -138,7 +138,7 @@ async def startBot(nameSeller):
         answerCreated(returnMes,answerMes , answerTick, id)
         
     if returnMes == []:
-        returnMes = 'Все уже отправлено'
+        returnMes = 'Все вже відправлено'
         return returnMes
         
     return format_return_mes(returnMes)
