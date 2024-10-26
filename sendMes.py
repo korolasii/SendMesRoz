@@ -72,7 +72,7 @@ def format_return_mes(return_mes):
 
 async def startBot(nameSeller):
     seller = {
-        'Party Zoo': 'seller_RockDog.json',
+        'Party Zoo': 'seller_PartyZoo.json',
         'Rock Dog': 'seller_RockDog.json'
     }
     
@@ -91,7 +91,7 @@ async def startBot(nameSeller):
     paramsRequestHeaderListOrder = {
         'type': 2,
         'is_review_request_send': 0,
-        # 'has_market_review': 0
+        'has_market_review': 0
     }
 
     responseDataListOrder =  requestListOrders('https://api-seller.rozetka.com.ua/orders/search', requestHeaderListOrder, paramsRequestHeaderListOrder)
@@ -136,7 +136,6 @@ async def startBot(nameSeller):
         answerTick = changeStatusReviewRequestSend('https://api-seller.rozetka.com.ua/orders/review-request-status', dataForChangeReviewRequestSend, bodyChangeReviewRequestSend)
         
         answerCreated(returnMes,answerMes , answerTick, id)
-        
     if returnMes == []:
         returnMes = 'Все вже відправлено'
         return returnMes
