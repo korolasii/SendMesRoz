@@ -69,7 +69,7 @@ def format_return_mes(return_mes):
         for key, value in item.items():
             formatted_str += f"{key}: {value},\n"
             
-    formatted_str += f"Всього відправлено: {len(return_mes)}"
+    formatted_str += f"Всього відправлено: {len(return_mes)} запитів"
     return formatted_str
 
 async def startBot(nameSeller):
